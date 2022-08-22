@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="${info.packageName}.service.domain.repository.${info.className}Repository">
+
+    <resultMap id="${info.lowerClassName}ResultMap"
+               type="${info.packageName}.api.dto.response.${info.className}ResponseDTO">
+  #foreach($fieldInfo in $info.fieldInfos)
+      <result property="${fieldInfo.field}" column="${fieldInfo.column}" jdbcType="${fieldInfo.jdbcType}"/>
+  #end
+  </resultMap>
+</mapper>
