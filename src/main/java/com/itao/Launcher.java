@@ -4,16 +4,12 @@ package com.itao;
 import com.itao.domain.FieldInfo;
 import com.itao.domain.GenInfo;
 import com.itao.domain.TemplateInfo;
-import com.itao.util.MysqlUtils;
-import com.itao.util.StringUtil;
-import com.itao.util.TypeUtil;
-import com.itao.util.VmUtil;
+import com.itao.util.*;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.text.SimpleDateFormat;
-import java.util.*;
-
+import java.util.ArrayList;
+import java.util.List;
 
 public class Launcher {
     private static final String TABLE_COMMENT_SQL =
@@ -21,20 +17,29 @@ public class Launcher {
     private static final String FIELD_SQL = "show full fields from ";
 
     private static final GenInfo genInfo;
+
     static {
         genInfo = GenInfo.getInstance();
     }
 
-    public static void main(String[] args){
-        String[] tables = getTables();
-        for (String t : tables) {
-            TemplateInfo info = templateInfo(t);
-            VmUtil.generate(genInfo.getVm(info.getClassName()), info);
+    public static void main(String[] args) {
+        ThreadPool threadPool = ThreadPoolFactory.threadPool();
+        try {
+            String[] tables = getTables();
+            for (String t : tables) {
+                threadPool.submit(() -> {
+                    TemplateInfo info = templateInfo(t);
+                    VmUtil.generate(genInfo.getVm(info.getClassName()), info);
+                });
+            }
+        } finally {
+            ThreadPoolFactory.colse(threadPool);
         }
+
 
     }
 
-    private static TemplateInfo templateInfo(String t){
+    private static TemplateInfo templateInfo(String t) {
         try {
             TemplateInfo info = new TemplateInfo();
             info.setPackageName(genInfo.getPackageName());
@@ -74,7 +79,7 @@ public class Launcher {
         }
     }
 
-    private static String[] getTables(){
+    private static String[] getTables() {
         try {
             String table = genInfo.getTables();
             String[] tables;
