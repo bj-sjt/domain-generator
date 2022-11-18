@@ -1,4 +1,4 @@
-package ${info.packageName}.api.dto.request;
+package ${info.packageName}.api.request;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -16,7 +16,7 @@ import java.util.Date;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class ${info.className}RequestDTO implements Serializable{
+public class ${info.className}Dto implements Serializable{
 
     private static final long serialVersionUID = 1L;
 

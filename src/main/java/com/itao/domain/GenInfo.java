@@ -53,12 +53,12 @@ public class GenInfo {
     public  Map<String, String> getVm(String className){
         return new HashMap<String, String>(){{
             put("vm/domain.vm", basePath + "/service/domain/entity/" + className + ".java");
-            put("vm/request.vm", basePath + "/api/dto/request/" + className + "RequestDTO.java");
-            put("vm/response.vm", basePath + "/api/dto/response/" + className + "ResponseDTO.java");
+            put("vm/request.vm", basePath + "/api/request/" + className + "Dto.java");
+            put("vm/response.vm", basePath + "/api/response/" + className + "Vo.java");
             put("vm/repository.vm", basePath + "/service/domain/repository/" + className + "Repository.java");
             put("vm/service.vm", basePath + "/service/domain/service/" + className + "Service.java");
             put("vm/serviceImpl.vm", basePath + "/service/domain/service/impl/" + className + "ServiceImpl.java");
-            put("vm/controller.vm", basePath + "/service/controller/" + className + "Controller.java");
+            put("vm/controller.vm", basePath + "/service/interfaces/web/" + className + "Controller.java");
             put("vm/mapper.vm",basePath + "/mapper/"  + className + "Mapper.xml");
         }};
     }

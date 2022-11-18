@@ -1,4 +1,4 @@
-package ${info.packageName}.api.dto.response;
+package ${info.packageName}.api.response;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -16,7 +16,7 @@ import java.util.Date;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class ${info.className}ResponseDTO implements Serializable{
+public class ${info.className}Vo implements Serializable{
 
     private static final long serialVersionUID = 1L;
 
