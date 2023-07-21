@@ -1,4 +1,4 @@
-package ${info.packageName}.api.dto.request;
+package ${info.packageName}.api.request;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

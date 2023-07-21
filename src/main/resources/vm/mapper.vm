@@ -3,7 +3,7 @@
 <mapper namespace="${info.packageName}.service.domain.repository.${info.className}Repository">
 
     <resultMap id="${info.lowerClassName}ResultMap"
-               type="${info.packageName}.api.dto.response.${info.className}ResponseDTO">
+               type="${info.packageName}.api.response.${info.className}Vo">
   #foreach($fieldInfo in $info.fieldInfos)
       <result property="${fieldInfo.field}" column="${fieldInfo.column}" jdbcType="${fieldInfo.jdbcType}"/>
   #end
