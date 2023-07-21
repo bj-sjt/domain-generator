@@ -1,6 +1,5 @@
 package ${info.packageName}.service.controller;
 
-import cn.hywy.framework.common.util.LogUtil;
 import ${info.packageName}.service.domain.service.${info.className}Service;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.RestController;
@@ -8,7 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 
 /**
-* @Description ${info.classComment}
+* ${info.classComment}
 * @Author sjt
 * @CreateTime ${info.genTime}
 */
@@ -16,8 +15,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/${info.lowerClassName}")
 @AllArgsConstructor
 public class ${info.className}Controller {
-
-    private static final LogUtil log = LogUtil.getLogger(${info.className}Controller.class);
 
     private ${info.className}Service ${info.lowerClassName}Service;
 }

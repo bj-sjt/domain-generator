@@ -1,0 +1,21 @@
+package ${info.packageName}.service.domain.Mapper;
+
+import ${info.packageName}.service.domain.entity.${info.className};
+import ${info.packageName}.service.domain.mapper.${info.className}Mapper;
+import ${info.packageName}.service.domain.repository.${info.className}Repository;
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import org.springframework.stereotype.Service;
+import lombok.AllArgsConstructor;
+
+/**
+* ${info.classComment}
+* @Author sjt
+* @CreateTime ${info.genTime}
+*/
+
+@Service
+@AllArgsConstructor
+public class ${info.className}RepositoryImpl
+        extends ServiceImpl<${info.className}Mapper, ${info.className}> implements ${info.className}Repository {
+
+}
