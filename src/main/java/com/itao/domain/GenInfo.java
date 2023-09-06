@@ -60,7 +60,7 @@ public class GenInfo {
             put("vm/repositoryImpl.vm", basePath + "/service/domain/repository/impl/" + className + "RepositoryImpl.java");
             put("vm/service.vm", basePath + "/service/domain/service/" + className + "Service.java");
             put("vm/serviceImpl.vm", basePath + "/service/domain/service/impl/" + className + "ServiceImpl.java");
-            put("vm/controller.vm", basePath + "/service/controller/" + className + "Controller.java");
+            put("vm/controller.vm", basePath + "/service/interfaces/web/" + className + "Controller.java");
             put("vm/mapper.vm",basePath + "/mapper/"  + className + "Mapper.xml");
         }};
     }

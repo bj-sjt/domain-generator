@@ -1,4 +1,4 @@
-package ${info.packageName}.service.controller;
+package ${info.packageName}.service.interfaces.web;
 
 import ${info.packageName}.service.domain.service.${info.className}Service;
 import lombok.AllArgsConstructor;
