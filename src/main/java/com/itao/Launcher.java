@@ -19,7 +19,7 @@ public class Launcher {
     private static final GenInfo genInfo;
 
     static {
-        genInfo = GenInfo.getInstance();
+        genInfo = GenInfo.instance();
     }
 
     public static void main(String[] args) {
@@ -61,6 +61,7 @@ public class Launcher {
                 FieldInfo fieldInfo = getFieldInfo(rs);
                 fieldInfos.add(fieldInfo);
             }
+            System.out.println(info);
             return info;
         } catch (SQLException e) {
             throw new RuntimeException(e);
