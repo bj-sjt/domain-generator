@@ -46,7 +46,12 @@ public class Launcher {
             ResultSet resultSet =
                     MysqlUtils.resultSet(TABLE_COMMENT_SQL + "'" + t + "'");
             info.setClassComment(resultSet.next() ? resultSet.getString(1) : "");
-            String className = StringUtil.capital(StringUtil.under2hump(t.replace(genInfo.getPrefix(), "")));
+            String className;
+            if (StringUtil.isBlank(genInfo.getPrefix())) {
+                className = StringUtil.capital(StringUtil.under2hump(t));
+            } else {
+                className = StringUtil.capital(StringUtil.under2hump(t.replace(genInfo.getPrefix(), "")));
+            }
             info.setClassName(className);
             info.setLowerClassName(StringUtil.deCapital(className));
             List<FieldInfo> fieldInfos = new ArrayList<>();
