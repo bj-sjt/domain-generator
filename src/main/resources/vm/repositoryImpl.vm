@@ -12,7 +12,6 @@ import lombok.AllArgsConstructor;
 * @Author sjt
 * @CreateTime ${info.genTime}
 */
-
 @Service
 @AllArgsConstructor
 public class ${info.className}RepositoryImpl
