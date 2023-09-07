@@ -22,7 +22,9 @@ public class TypeUtil {
             return "Long";
         } else if (sqlType.contains("int")) {
             return "Integer";
-        } else if (sqlType.contains("date")) {
+        } else if (sqlType.contains("double")) {
+            return "Double";
+        }else if (sqlType.contains("date")) {
             return "Date";
         } else {
             return "String";
