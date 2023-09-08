@@ -15,6 +15,6 @@ import lombok.AllArgsConstructor;
 @Service
 @AllArgsConstructor
 public class ${info.className}RepositoryImpl
-        extends ServiceImpl<${info.className}Mapper, ${info.className}> implements ${info.className}Repository {
+         extends ServiceImpl<${info.className}Mapper, ${info.className}> implements ${info.className}Repository {
 
 }
