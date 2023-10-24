@@ -24,8 +24,10 @@ public class TypeUtil {
             return "Integer";
         } else if (sqlType.contains("double")) {
             return "Double";
-        }else if (sqlType.contains("date")) {
+        } else if (sqlType.contains("date")) {
             return "Date";
+        } else if (sqlType.contains("decimal")) {
+            return "BigDecimal";
         } else {
             return "String";
         }
