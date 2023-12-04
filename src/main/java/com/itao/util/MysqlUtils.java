@@ -13,7 +13,7 @@ public class MysqlUtils {
 
     private static final DbInfo dbInfo;
     static {
-        dbInfo = DbInfo.getInstance();
+        dbInfo = DbInfo.instance();
         try {
             Class.forName(dbInfo.getDriverClass());
         } catch (ClassNotFoundException e) {

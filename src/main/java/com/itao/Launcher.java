@@ -10,6 +10,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.CompletableFuture;
 
 public class Launcher {
     private static final String TABLE_COMMENT_SQL =
@@ -23,20 +24,21 @@ public class Launcher {
     }
 
     public static void main(String[] args) {
-        ThreadPool threadPool = ThreadPoolFactory.threadPool();
-        try {
-            String[] tables = getTables();
-            for (String t : tables) {
-                threadPool.submit(() -> {
-                    TemplateInfo info = templateInfo(t);
-                    VmUtil.generate(genInfo.getVm(info.getClassName()), info);
-                });
-            }
-        } finally {
-            ThreadPoolFactory.colse(threadPool);
+        String[] tables = getTables();
+        List<CompletableFuture<Void>> futures = new ArrayList<>();
+        for (String t : tables) {
+            CompletableFuture<Void> future = CompletableFuture.runAsync(() -> {
+                TemplateInfo info = templateInfo(t);
+                boolean hasBigDecimal = info.getFieldInfos().stream()
+                        .anyMatch(fieldInfo -> "BigDecimal".equals(fieldInfo.getJavaType()));
+
+                boolean hasDate = info.getFieldInfos().stream()
+                        .anyMatch(fieldInfo -> "Date".equals(fieldInfo.getJavaType()));
+                VmUtil.generate(genInfo.getVm(info.getClassName()), info, hasBigDecimal, hasDate);
+            });
+            futures.add(future);
         }
-
-
+        CompletableFuture.allOf(futures.toArray(new CompletableFuture[0])).join();
     }
 
     private static TemplateInfo templateInfo(String t) {

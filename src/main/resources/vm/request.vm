@@ -5,9 +5,12 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
+#if(${hasDate})
 import java.util.Date;
+#end
+#if(${hasBigDecimal})
 import java.math.BigDecimal;
-
+#end
 
 /**
  * ${info.classComment}

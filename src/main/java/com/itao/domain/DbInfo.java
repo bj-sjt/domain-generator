@@ -36,7 +36,7 @@ public class DbInfo {
     }
 
 
-    public static DbInfo getInstance() {
+    public static DbInfo instance() {
         return instance;
     }
 

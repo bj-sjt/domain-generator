@@ -31,7 +31,7 @@ public class VmUtil {
         ve.init();
     }
 
-    public static void generate(Map<String, String> vm, TemplateInfo info){
+    public static void generate(Map<String, String> vm, TemplateInfo info, boolean hasBigDecimal, boolean hasDate){
         if (vm == null || vm.isEmpty()){
             return;
         }
@@ -40,8 +40,10 @@ public class VmUtil {
             // 获取模板文件
             Template t = ve.getTemplate(entry.getKey());
             // 设置变量
-            Map<String, TemplateInfo> context = new HashMap<>();
+            Map<String, Object> context = new HashMap<>();
             context.put("info", info);
+            context.put("hasBigDecimal", hasBigDecimal);
+            context.put("hasDate", hasDate);
             VelocityContext ctx = new VelocityContext(context);
             // 输出
             StringWriter sw = new StringWriter();
