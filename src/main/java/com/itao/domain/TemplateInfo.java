@@ -17,22 +17,27 @@ public class TemplateInfo {
      * 模板生成的时间
      */
     private String genTime;
+
     /**
      * 基础报名
      */
     private String packageName;
+
     /**
      * 类注释
      */
     private String classComment;
+
     /**
      * 类名
      */
     private String className;
+
     /**
      * 类名首字母小写
      */
     private String lowerClassName;
+
     /**
      * 字段集合
      */

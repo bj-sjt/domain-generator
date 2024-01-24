@@ -13,18 +13,22 @@ public class FieldInfo {
      * 列名
      */
     private String column;
+
     /**
      * jdbc类型
      */
     private String jdbcType;
+
     /**
      * 字段名
      */
     private String field;
+
     /**
      * java类型
      */
     private String javaType;
+
     /**
      * 注释
      */
