@@ -9,7 +9,7 @@ public class TypeUtil {
 
     public static String getJavaType(String sqlType, String field) {
 
-        if (StringUtil.isBlank(sqlType) && StringUtil.isBlank(field)) {
+        if (StringUtil.isBlank(sqlType) || StringUtil.isBlank(field)) {
             throw new RuntimeException("数据库类型或字段名不能为空");
         }
 

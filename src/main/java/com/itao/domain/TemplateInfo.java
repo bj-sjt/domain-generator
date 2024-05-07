@@ -19,7 +19,7 @@ public class TemplateInfo {
     private String genTime;
 
     /**
-     * 基础报名
+     * 基础包名
      */
     private String packageName;
 
