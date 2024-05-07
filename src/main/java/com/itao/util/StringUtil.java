@@ -34,7 +34,7 @@ public class StringUtil {
      * @param str 要判断的字符串
      */
     public static boolean isBlank(String str) {
-        return str == null || str.length() == 0;
+        return str == null || str.isEmpty();
     }
 
     /**
