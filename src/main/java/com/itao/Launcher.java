@@ -28,7 +28,7 @@ public class Launcher {
         List<CompletableFuture<Void>> futures = new ArrayList<>();
         for (String t : tables) {
             CompletableFuture<Void> future = CompletableFuture.runAsync(() -> {
-                TemplateInfo info = templateInfo(t);
+                TemplateInfo info = templateInfo(t.trim());
                 boolean hasBigDecimal = info.getFieldInfos().stream()
                         .anyMatch(fieldInfo -> "BigDecimal".equals(fieldInfo.getJavaType()));
 
