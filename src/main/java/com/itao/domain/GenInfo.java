@@ -5,8 +5,6 @@ import lombok.Getter;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Properties;
@@ -23,8 +21,8 @@ public class GenInfo {
     private final String packageName;
     private final String tables;
     private final String prefix;
-    private final Path baseApiPath;
-    private final Path baseServicePath;
+    private final String baseApiPath;
+    private final String baseServicePath;
 
 
     private GenInfo(){
@@ -42,20 +40,20 @@ public class GenInfo {
                 filePath = System.getProperty("user.dir");
                 hasFilePath = false;
             }
+            String baseApi;
+            String baseService;
             if (!hasFilePath) {
-                String baseApi = filePath + "/src/main/java";
-                String baseService = filePath + "/src/main/java";
-                baseApiPath = Paths.get(baseApi, packagePath);
-                baseServicePath = Paths.get(baseService, packagePath);
+                baseApi = filePath + "/src/main/java";
+                baseService = baseApi;
             } else {
                 filePath = filePath.replace("\\", "/");
                 int lastIndexOf = filePath.lastIndexOf("/");
                 String substring = filePath.substring(lastIndexOf);
-                String baseApi = filePath + "/" + substring + "-api/src/main/java";
-                String baseService = filePath + "/" + substring + "-service/src/main/java";
-                baseApiPath = Paths.get(baseApi, packagePath);
-                baseServicePath = Paths.get(baseService, packagePath);
+                baseApi = filePath + "/" + substring + "-api/src/main/java";
+                baseService = filePath + "/" + substring + "-service/src/main/java";
             }
+            baseApiPath = baseApi + packagePath;
+            baseServicePath = baseService + packagePath;
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
