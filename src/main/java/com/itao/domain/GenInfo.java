@@ -23,7 +23,8 @@ public class GenInfo {
     private final String packageName;
     private final String tables;
     private final String prefix;
-    private final Path basePath;
+    private final Path baseApiPath;
+    private final Path baseServicePath;
 
 
     private GenInfo(){
@@ -35,12 +36,26 @@ public class GenInfo {
             this.tables = properties.getProperty("tables");
             this.prefix = properties.getProperty("prefix");
             String filePath = properties.getProperty("filePath");
+            String packagePath = packageName.replace(".", "/");
+            boolean hasFilePath = true;
             if (StringUtil.isBlank(filePath)) {
                 filePath = System.getProperty("user.dir");
+                hasFilePath = false;
             }
-            String base = filePath + "/src/main/java";
-            String packagePath = packageName.replace(".", "/");
-            basePath = Paths.get(base, packagePath);
+            if (!hasFilePath) {
+                String baseApi = filePath + "/src/main/java";
+                String baseService = filePath + "/src/main/java";
+                baseApiPath = Paths.get(baseApi, packagePath);
+                baseServicePath = Paths.get(baseService, packagePath);
+            } else {
+                filePath = filePath.replace("\\", "/");
+                int lastIndexOf = filePath.lastIndexOf("/");
+                String substring = filePath.substring(lastIndexOf);
+                String baseApi = filePath + "/" + substring + "-api/src/main/java";
+                String baseService = filePath + "/" + substring + "-service/src/main/java";
+                baseApiPath = Paths.get(baseApi, packagePath);
+                baseServicePath = Paths.get(baseService, packagePath);
+            }
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
@@ -52,15 +67,15 @@ public class GenInfo {
 
     public  Map<String, String> getVm(String className){
         return new HashMap<String, String>(){{
-            put("vm/domain.vm", basePath + "/service/domain/entity/" + className + ".java");
-            put("vm/request.vm", basePath + "/api/request/" + className + "Dto.java");
-            put("vm/response.vm", basePath + "/api/response/" + className + "Vo.java");
-            put("vm/baseMapper.vm", basePath + "/service/domain/mapper/" + className + "Mapper.java");
-            put("vm/repository.vm", basePath + "/service/domain/repository/" + className + "Repository.java");
-            put("vm/repositoryImpl.vm", basePath + "/service/domain/repository/impl/" + className + "RepositoryImpl.java");
-            put("vm/service.vm", basePath + "/service/domain/service/" + className + "Service.java");
-            put("vm/serviceImpl.vm", basePath + "/service/domain/service/impl/" + className + "ServiceImpl.java");
-            put("vm/controller.vm", basePath + "/service/interfaces/web/" + className + "Controller.java");
+            put("vm/domain.vm", baseServicePath + "/service/domain/entity/" + className + ".java");
+            put("vm/request.vm", baseApiPath + "/api/request/" + className + "Dto.java");
+            put("vm/response.vm", baseApiPath + "/api/response/" + className + "Vo.java");
+            put("vm/baseMapper.vm", baseServicePath + "/service/domain/mapper/" + className + "Mapper.java");
+            put("vm/repository.vm", baseServicePath + "/service/domain/repository/" + className + "Repository.java");
+            put("vm/repositoryImpl.vm", baseServicePath + "/service/domain/repository/impl/" + className + "RepositoryImpl.java");
+            put("vm/service.vm", baseServicePath + "/service/domain/service/" + className + "Service.java");
+            put("vm/serviceImpl.vm", baseServicePath + "/service/domain/service/impl/" + className + "ServiceImpl.java");
+            put("vm/controller.vm", baseServicePath + "/service/interfaces/web/" + className + "Controller.java");
             //put("vm/mapper.vm", basePath + "/mapper/"  + className + "Mapper.xml");
         }};
     }
