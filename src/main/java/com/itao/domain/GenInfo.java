@@ -52,8 +52,8 @@ public class GenInfo {
                 baseApi = filePath + "/" + substring + "-api/src/main/java";
                 baseService = filePath + "/" + substring + "-service/src/main/java";
             }
-            baseApiPath = baseApi + packagePath;
-            baseServicePath = baseService + packagePath;
+            baseApiPath = baseApi + "/" + packagePath;
+            baseServicePath = baseService + "/" + packagePath;
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
