@@ -56,6 +56,7 @@ public class Launcher {
             }
             info.setClassName(className);
             info.setLowerClassName(StringUtil.deCapital(className));
+            info.setBasePath(StringUtil.camelToUnderline(info.getLowerClassName()).replace("_", "/"));
             List<FieldInfo> fieldInfos = new ArrayList<>();
             info.setFieldInfos(fieldInfos);
             ResultSet rs = MysqlUtils.resultSet(FIELD_SQL + t);

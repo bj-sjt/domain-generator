@@ -39,6 +39,11 @@ public class TemplateInfo {
     private String lowerClassName;
 
     /**
+     * controller的基础path
+     */
+    private String basePath;
+
+    /**
      * 字段集合
      */
     List<FieldInfo> fieldInfos;

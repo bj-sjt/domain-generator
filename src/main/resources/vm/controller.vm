@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 * @CreateTime ${info.genTime}
 */
 @RestController
-@RequestMapping("/${info.lowerClassName}")
+@RequestMapping("/${info.basePath}")
 @AllArgsConstructor
 public class ${info.className}Controller {
 

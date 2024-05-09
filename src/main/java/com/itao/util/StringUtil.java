@@ -11,6 +11,7 @@ import java.util.regex.Pattern;
 public class StringUtil {
 
     private static final Pattern UNDER_LINT_PATTERN = Pattern.compile("_([a-z])");
+    public static final char UNDERLINE = '_';
 
     /**
      * 下划线转驼峰
@@ -26,6 +27,27 @@ public class StringUtil {
             matcher.appendReplacement(sb, matcher.group(1).toUpperCase());
         }
         matcher.appendTail(sb);
+        return sb.toString();
+    }
+
+    /**
+     * 驼峰格式字符串转换为下划线格式字符串
+     */
+    public static String camelToUnderline(String param) {
+        if (param == null || param.trim().isEmpty()) {
+            return "";
+        }
+        int len = param.length();
+        StringBuilder sb = new StringBuilder(len);
+        for (int i = 0; i < len; i++) {
+            char c = param.charAt(i);
+            if (Character.isUpperCase(c)) {
+                sb.append(UNDERLINE);
+                sb.append(Character.toLowerCase(c));
+            } else {
+                sb.append(c);
+            }
+        }
         return sb.toString();
     }
 
